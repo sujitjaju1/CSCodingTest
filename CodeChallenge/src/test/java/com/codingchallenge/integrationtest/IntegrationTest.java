@@ -35,7 +35,6 @@ public class IntegrationTest {
 		statement.executeUpdate("DELETE FROM EVENT_DETAILS_RAW");
 		
 		//Step 2: Read the file and insert records into DB
-		ClassLoader classLoader = getClass().getClassLoader();
 		new FileHandler().readFileAndInvokeTaskToInsertRecordInDB("largeFile.txt");
 		//Step 3: Move the data to EVENTS_DETAILS along with duration and alert
 		new AlertGeneration().calculateAlertRecordsAndSaveInEventDetailsTable();
@@ -44,6 +43,6 @@ public class IntegrationTest {
 		ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM EVENT_DETAILS WHERE ALERT='true'");
 		rs.next();
 		int count = rs.getInt(1);
-		assertEquals(1000000, count);
+		assertEquals(100000, count);
 	}
 }

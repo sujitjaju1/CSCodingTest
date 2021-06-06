@@ -15,7 +15,7 @@ public class LargeFileCreater {
 		FileWriter fw = new FileWriter(file);
 		BufferedWriter bw = new BufferedWriter(fw);
 		
-		for(int i=0;i<1000000; i++) {
+		for(int i=0;i<100000; i++) {
 			bw.write("{\"id\":\"abcd"+i+"\",\"state\":\"STARTED\",\"type\":\"APPLICATION_LOG\",\"host\":\"12345\",\"timestamp\":1491377495213}");
 			bw.newLine();
 			bw.write("{\"id\":\"abcd"+i+"\",\"state\":\"FINISHED\",\"type\":\"APPLICATION_LOG\",\"host\":\"12345\",\"timestamp\":1491377495218}");
