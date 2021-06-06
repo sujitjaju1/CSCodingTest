@@ -11,18 +11,17 @@ public class ConnectionFactory {
 
 	public static Connection getConnection() {
 		if (connection == null) {
+			ServerCreater.createServer();
 			try {
 				LOGGER.info("Creating Connection object to connect to logdb database.");
 				Class.forName("org.hsqldb.jdbcDriver");
-				connection = DriverManager.getConnection("jdbc:hsqldb:file:logdb", "SA", "");
+				connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/logdb", "SA", "");
 				LOGGER.info("Connection created successfully.");
 			} catch (ClassNotFoundException e) {
 				LOGGER.severe("Error creating the connection object: " + e.getMessage());
 			} catch (SQLException e) {
 				LOGGER.severe("Error creating the connection object: " + e.getMessage());
 			}
-		} else {
-			LOGGER.info("Connection object is already created. Returning the same.");
 		}
 		return connection;
 	}

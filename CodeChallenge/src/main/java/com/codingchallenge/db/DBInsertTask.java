@@ -30,9 +30,11 @@ public class DBInsertTask implements Runnable{
 				ps.setString(4, e.getHost());
 				ps.setString(5, e.getState());
 				ps.addBatch();
+				e = null;
 			}
 			ps.executeBatch();
 			ps.close();
+			list = null;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.severe("There was error while inserting data into DB: " + e.getMessage());

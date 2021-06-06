@@ -20,11 +20,6 @@ public class AlertGeneration {
 					+ "GROUP BY EVENT_ID)";
 			statement.execute(query);
 			LOGGER.info("Moved the data from EVENT_DETAILS_RAW to EVENT_DETAILS table");
-			//Updating Type and Host
-			query = "UPDATE EVENT_DETAILS "
-					+ "SET HOST = (SELECT DISTINCT(HOST) FROM EVENT_DETAILS_RAW WHERE EVENT_DETAILS_RAW.EVENT_ID=EVENT_DETAILS.EVENT_ID AND HOST IS NOT NULL ),"
-					+ "TYPE = (SELECT DISTINCT(TYPE) FROM EVENT_DETAILS_RAW WHERE EVENT_DETAILS_RAW.EVENT_ID=EVENT_DETAILS.EVENT_ID AND TYPE IS NOT NULL )";
-			statement.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.severe("There was error while creating the statement");
